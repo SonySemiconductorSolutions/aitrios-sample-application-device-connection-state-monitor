@@ -1,0 +1,146 @@
+= Device Connection State Monitor Sample pass:[<br/>] Tutorial pass:[<br/>] 
+:sectnums:
+:sectnumlevels: 1
+:author: Copyright 2023 Sony Semiconductor Solutions Corporation
+:version-label: Version 
+:revnumber: x.x.x
+:revdate: YYYY - MM - DD
+:trademark-desc1: AITRIOS™ and AITRIOS logos are the registered trademarks or trademarks
+:trademark-desc2: of Sony Group Corporation or its affiliated companies.
+:toc:
+:toc-title: TOC
+:toclevels: 1
+:chapter-label:
+:lang: en
+
+== Change history
+
+|===
+|Date |What/Why 
+
+|2023/06/29
+|Initial draft
+
+|===
+
+== Introduction
+This tutorial explains about Device Connection State Monitor Sample. +
+This sample regularly obtains connection state of Edge AI device from "**Console**" and outputs log if there is any change. It links with "**Slack**" or "**SendGrid**" and provides a processing to notify message in the user environment. 
+
+
+[#_precondition]
+== Prerequisite
+=== Prepare Console connection information
+
+To use sample application, a connection information is required to access "**Console**" from application. +
+Information obtained is used in “How to use application”. The necessary connection information is given as below.
+
+* Refer to the client application list of "**Portal for AITRIOS**" or register the client application for the sample application if necessary to get the following information: 
+See the "Issuing a Client Secret for SDK" in https://developer.aitrios.sony-semicon.com/en/file/download/portal-user-manual["**Portal User Manual**"] for more information.
+** Client ID
+** Secret
++
+* Get the following information from https://developer.aitrios.sony-semicon.com/en/file/download/rest-api-authentication[this material]:
+** Console endpoint
+** Portal authorization endpoint
+
+=== Prepare service for notification
+In sample application, notification processing is done using either of the following services. +
+When using, please use your own account and get authentication information.
+
+* Slack
+** Prepare OAuth access token of either Bot Token or User Token. For details, read the https://api.slack.com/authentication[official document].
+* SendGrid
+** Prepare API key. For details, read the https://docs.sendgrid.com/ui/account-and-settings/api-keys[official document]. 
+
+== Operation Environment
+
+* Above Python 3.7
+
+== Environment Setup
+
+. Install Python +
+Get the installer for your environment from https://www.python.org/downloads/[the official site] and install it. +
+
+. Clone the repository +
+Clone repository of sample application to any directory. If you use the git command, you can clone a repository containing submodules by running the following command:
++
+[source,Bash]
+----
+git clone --recursive https://github.com/SonySemiconductorSolutions/aitrios-sample-application-device-connection-state-monitor.git
+----
++
+For other cloning methods, see https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository[GitHub Docs].
+
+. Install existing package +
+Move to a directory where repository is cloned and execute the following command:
++
+[source,Bash]
+----
+pip install -r requirements.txt
+----
+
+[#_Execute_application]
+== How to use application
+
+=== Set connection information
+
+. Change the file name of [src/config/access_settings.py.sample] to [src/config/access_settings.py] . +
+. Set connection information of "**Console**" to [console_access_settings]. Refer <<#_precondition,Precondition>> to understand how to obtain connection information.
++
+|===
+|src/config/access_settings.py
+a|
+[source,Python]
+----
+console_access_settings = {
+    "console_endpoint": "Console endpoint",
+    "portal_authorization_endpoint": "Portal authorization endpoint",
+    "client_secret": "Secret",
+    "client_id": "Client ID",
+}
+----
+|===
++
+
+. When notifying through "**Slack**", cancel the comment out of [slack_settings] and set notification information of "**Slack**".
++
+|===
+|src/config/access_settings.py
+a|
+[source,Python]
+----
+slack_settings = {
+    "access_token": "OAuth access token",
+    "channel": "Channel to notify",
+}
+----
+|===
+
+. When notifying through "**SendGrid**", cancel the comment out of [sendgrid_settings] and set notification information of "**SendGrid**".
++
+|===
+|src/config/access_settings.py
+a|
+[source,Python]
+----
+sendgrid_settings = {
+    "apikey": "API Key",
+    "mail_from": "Recipient email address",
+    "mail_to": ["Destination email address"],
+}
+----
+|===
+
+=== Start Application
+Execute application through the following command. +
+[source,Bash]
+----
+python src/main.py
+----
+Obtain device information from "**Console**" after every 10 minutes. If there is any change in connection state, a message will be displayed in the standard error output. If there is a setting in "**Slack**" or "**SendGrid**", a notification will be sent. +
+
+== Notes
+
+* Both "**Slack**" and "**SendGrid**" are services provided by other companies. We are not responsible for any damage caused when using these. Please use these after checking the content at the customer end.
+* The default value of polling interval to "**Console**" is 10 minutes. Do not make changes within 10 minutes to avoid putting a load on the system
