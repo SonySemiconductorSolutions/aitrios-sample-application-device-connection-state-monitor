@@ -1,0 +1,143 @@
+= デバイス接続状態変化検知サンプル pass:[<br/>] チュートリアル pass:[<br/>] 
+:sectnums:
+:sectnumlevels: 1
+:author: Copyright 2023 Sony Semiconductor Solutions Corporation
+:version-label: Version 
+:revnumber: x.x.x
+:revdate: YYYY - MM - DD
+:trademark-desc: AITRIOS™、およびそのロゴは、ソニーグループ株式会社またはその関連会社の登録商標または商標です。
+:toc:
+:toc-title: 目次
+:toclevels: 1
+:chapter-label:
+:lang: ja
+
+== 更新履歴
+
+|===
+|Date |What/Why 
+
+|2023/06/29
+|初版作成
+
+|===
+
+== はじめに
+このチュートリアルでは、デバイス接続状態変化検知サンプルについて解説します。 +
+本サンプルは、「**Console**」からエッジAIデバイスの接続状態を定期取得し、変化があった場合にログを出力します。「**Slack**」か「**SendGrid**」と連携して、ユーザー環境へメッセージを通知する処理も提供しています。
+
+[#_precondition]
+== 前提条件
+=== Console接続情報の準備
+サンプルアプリケーションを使用するには、アプリケーションから「**Console**」へアクセスするための接続情報が必要になります。 +
+取得した情報は<<#_Execute_application,「アプリケーション使用方法」>>で利用します。 +
+必要な接続情報は下記の通りです。
+
+* 「**Portal for AITRIOS**」のクライアントアプリ一覧から参照または、必要に応じてサンプルアプリケーション向けのクライアントアプリ登録を行い、下記情報の取得を行ってください。
+詳細は、 https://developer.aitrios.sony-semicon.com/file/download/portal-user-manual[「**Portalユーザーマニュアル**」] の「SDK用のClient Secretを発行する」をお読みください。
+** クライアントID
+** シークレット
++
+* https://developer.aitrios.sony-semicon.com/file/download/rest-api-authentication[こちらのドキュメント] から下記の情報を取得してください。
+** コンソールエンドポイント
+** ポータル認証エンドポイント
+
+=== 通知用サービスの準備
+サンプルアプリケーションでは、以下のいずれかのサービスを用いて通知処理を行います。 +
+使用する場合はご自身でアカウントを用意し、認証情報を取得してください。
+
+* Slack
+** Bot TokenかUser TokenのいずれかのOAuthアクセストークンをご用意ください。詳細は https://api.slack.com/authentication[公式ドキュメント] をお読みください。
+* SendGrid
+** APIキーをご用意ください。詳細は https://docs.sendgrid.com/ui/account-and-settings/api-keys[公式ドキュメント] をお読みください。
+
+== 動作環境
+
+* Python 3.7 以上
+
+== 環境セットアップ
+
+. Pythonをインストールする +
+お使いの環境向けのインストーラを https://www.python.org/downloads/[公式サイト] から取得し、インストールしてください。
+
+. リポジトリをCloneする +
+任意のディレクトリにサンプルアプリケーションのリポジトリをCloneします。gitコマンドを利用する場合は、下記のコマンドを実行してサブモジュールを含むリポジトリをCloneできます。
++
+[source,Bash]
+----
+git clone --recursive https://github.com/SonySemiconductorSolutions/aitrios-sample-application-device-connection-state-monitor.git
+----
++
+その他のClone方法については、 https://docs.github.com/ja/repositories/creating-and-managing-repositories/cloning-a-repository[GitHub Docs] を参照してください。
+
+. 依存パッケージをインストールする +
+リポジトリをCloneしたディレクトリに移動し、下記のコマンドを実行します。
++
+[source,Bash]
+----
+pip install -r requirements.txt
+----
+
+[#_Execute_application]
+== アプリケーション使用方法
+
+=== 接続情報を設定する
+. [src/config/access_settings.py.sample] のファイル名を [src/config/access_settings.py] に変更します。 +
+. [console_access_settings] に「**Console**」の接続先情報を設定します。接続先情報の取得方法は<<#_precondition,前提条件>>を参照してください。
++
+|===
+|src/config/access_settings.py
+a|
+[source,Python]
+----
+console_access_settings = {
+    "console_endpoint": "コンソールエンドポイント",
+    "portal_authorization_endpoint": "ポータル認証エンドポイント",
+    "client_secret": "シークレット",
+    "client_id": "クライアントID",
+}
+----
+|===
++
+
+. 「**Slack**」による通知を行う場合は、[slack_settings] のコメントアウトを解除して「**Slack**」の通知用情報を設定します。
++
+|===
+|src/config/access_settings.py
+a|
+[source,Python]
+----
+slack_settings = {
+    "access_token": "OAuthアクセストークン",
+    "channel": "通知先チャンネル",
+}
+----
+|===
+
+. 「**SendGrid**」による通知を行う場合は、[sendgrid_settings] のコメントアウトを解除して「**SendGrid**」の通知用情報を設定します。
++
+|===
+|src/config/access_settings.py
+a|
+[source,Python]
+----
+sendgrid_settings = {
+    "apikey": "APIキー",
+    "mail_from": "送信元メールアドレス",
+    "mail_to": ["送信先メールアドレス"],
+}
+----
+|===
+
+=== アプリケーションを開始する
+下記のコマンドによりアプリケーションを実行します。 +
+[source,Bash]
+----
+python src/main.py
+----
+以降、10分おきに「**Console**」からデバイス情報を取得し、接続状態に変化があった場合に標準エラー出力にメッセージが表示されます。「**Slack**」か「**SendGrid**」の設定をした場合は通知が送られます。 +
+
+== 注意事項
+
+* 「**Slack**」「**SendGrid**」は他社が提供するサービスであり、これらの利用によって損害が発生した場合でも責任を負いかねます。お客様側でサービス内容をご確認のうえでご利用ください。
+* 「**Console**」へのポーリング間隔のデフォルト値は10分となります。システムへの負荷を避けるために、10分未満には変更しないでください。
