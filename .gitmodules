@@ -1,0 +1,3 @@
+[submodule "lib/aitrios-sdk-console-access-lib-python"]
+	path = lib/aitrios-sdk-console-access-lib-python
+	url = https://github.com/SonySemiconductorSolutions/aitrios-sdk-console-access-lib-python

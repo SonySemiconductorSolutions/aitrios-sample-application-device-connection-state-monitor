@@ -1,0 +1,2 @@
+./lib/aitrios-sdk-console-access-lib-python/src
+./lib/aitrios-sdk-console-access-lib-python/lib/python-client
