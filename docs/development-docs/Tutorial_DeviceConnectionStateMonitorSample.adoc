@@ -67,7 +67,7 @@ Clone repository of sample application to any directory. If you use the git comm
 +
 [source,Bash]
 ----
-git clone --recursive https://github.com/SonySemiconductorSolutions/device-connection-state-monitor-sample-dev.git
+git clone --recursive https://github.com/SonySemiconductorSolutions/aitrios-sample-application-device-connection-state-monitor.git
 ----
 +
 For other cloning methods, see https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository[GitHub Docs].

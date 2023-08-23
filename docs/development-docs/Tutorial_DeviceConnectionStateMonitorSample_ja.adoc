@@ -65,7 +65,7 @@
 +
 [source,Bash]
 ----
-git clone --recursive https://github.com/SonySemiconductorSolutions/device-connection-state-monitor-sample-dev.git
+git clone --recursive https://github.com/SonySemiconductorSolutions/aitrios-sample-application-device-connection-state-monitor.git
 ----
 +
 その他のClone方法については、 https://docs.github.com/ja/repositories/creating-and-managing-repositories/cloning-a-repository[GitHub Docs] を参照してください。
