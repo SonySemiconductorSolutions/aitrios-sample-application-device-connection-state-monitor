@@ -34,7 +34,7 @@
 必要な接続情報は下記の通りです。
 
 * 「**Portal for AITRIOS**」のクライアントアプリ一覧から参照または、必要に応じてサンプルアプリケーション向けのクライアントアプリ登録を行い、下記情報の取得を行ってください。
-詳細は、 https://developer.aitrios.sony-semicon.com/file/download/portal-user-manual[「**Portalユーザーマニュアル**」] の「SDK用のClient Secretを発行する」をお読みください。
+詳細は、 https://developer.aitrios.sony-semicon.com/documents/portal-user-manual[「**Portalユーザーマニュアル**」] の「SDK用のClient Secretを発行する」をお読みください。
 ** クライアントID
 ** シークレット
 +
@@ -65,7 +65,7 @@
 +
 [source,Bash]
 ----
-git clone --recursive https://github.com/SonySemiconductorSolutions/aitrios-sample-application-device-connection-state-monitor.git
+git clone --recursive https://github.com/SonySemiconductorSolutions/device-connection-state-monitor-sample-dev.git
 ----
 +
 その他のClone方法については、 https://docs.github.com/ja/repositories/creating-and-managing-repositories/cloning-a-repository[GitHub Docs] を参照してください。
