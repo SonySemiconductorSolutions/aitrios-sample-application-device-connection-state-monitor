@@ -36,7 +36,7 @@ To use sample application, a connection information is required to access "**Con
 Information obtained is used in “How to use application”. The necessary connection information is given as below.
 
 * Refer to the client application list of "**Portal for AITRIOS**" or register the client application for the sample application if necessary to get the following information: 
-See the "Issuing a Client Secret for SDK" in https://developer.aitrios.sony-semicon.com/en/file/download/portal-user-manual["**Portal User Manual**"] for more information.
+See the "Issuing a Client Secret for SDK" in https://developer.aitrios.sony-semicon.com/en/documents/portal-user-manual["**Portal User Manual**"] for more information.
 ** Client ID
 ** Secret
 +

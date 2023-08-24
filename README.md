@@ -36,7 +36,7 @@ See the ["**Device Connection State Monitor Sample Tutorial**"](./docs/developme
 - ["**Developer Site**"](https://developer.aitrios.sony-semicon.com/en)
 
 ## Trademark
-- ["**Read This First**"](https://developer.aitrios.sony-semicon.com/en/development-guides/documents/manuals/)
+- ["**Read This First**"](https://developer.aitrios.sony-semicon.com/en/documents/read-this-first)
 
 ## Versioning
 
