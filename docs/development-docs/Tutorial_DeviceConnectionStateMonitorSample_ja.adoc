@@ -20,6 +20,9 @@
 |2023/06/29
 |初版作成
 
+|2024/02/05
+|Console Developer EditionとConsole Enterprise Edition対応
+
 |===
 
 == はじめに
@@ -33,7 +36,8 @@
 取得した情報は<<#_Execute_application,「アプリケーション使用方法」>>で利用します。 +
 必要な接続情報は下記の通りです。
 
-* 「**Portal for AITRIOS**」のクライアントアプリ一覧から参照または、必要に応じてサンプルアプリケーション向けのクライアントアプリ登録を行い、下記情報の取得を行ってください。
+- 「**Console Developer Edition**」を使用している場合
+* 「**Portal for AITRIOS**」のクライアントアプリケーション一覧から参照または、必要に応じてサンプルアプリケーション向けのクライアントアプリケーション登録を行い、下記情報の取得を行ってください。
 詳細は、 https://developer.aitrios.sony-semicon.com/documents/portal-user-manual[「**Portalユーザーマニュアル**」] の「SDK用のClient Secretを発行する」をお読みください。
 ** クライアントID
 ** シークレット
@@ -41,6 +45,9 @@
 * https://developer.aitrios.sony-semicon.com/file/download/rest-api-authentication[こちらのドキュメント] から下記の情報を取得してください。
 ** コンソールエンドポイント
 ** ポータル認証エンドポイント
+
+- 「**Console Enterprise Edition**」を使用している場合
+* 「**Console**」の導入担当者(Service Administrator)に問い合わせください。
 
 === 通知用サービスの準備
 サンプルアプリケーションでは、以下のいずれかのサービスを用いて通知処理を行います。 +
@@ -83,7 +90,9 @@ pip install -r requirements.txt
 
 === 接続情報を設定する
 . [src/config/access_settings.py.sample] のファイル名を [src/config/access_settings.py] に変更します。 +
-. [console_access_settings] に「**Console**」の接続先情報を設定します。接続先情報の取得方法は<<#_precondition,前提条件>>を参照してください。
+. [console_access_settings] に「**Console**」の接続先情報を設定します。接続先情報の取得方法は<<#_precondition,前提条件>>を参照してください。 +
+
+- 「**Console Developer Edition**」を使用している場合
 +
 |===
 |src/config/access_settings.py
@@ -98,6 +107,34 @@ console_access_settings = {
 }
 ----
 |===
++
+* `**console_endpoint**` に、取得したコンソールエンドポイントを指定します。 +
+* `**portal_authorization_endpoint**` に、取得したポータル認証エンドポイントを指定します。 +
+* `**client_secret**` に、登録したアプリケーションの シークレット を指定します。 +
+* `**client_id**` に、登録したアプリケーションの クライアントID を指定します。 +
++
+- 「**Console Enterprise Edition**」を使用している場合
++
+|===
+|src/config/access_settings.py
+a|
+[source,Python]
+----
+console_access_settings = {
+    "console_endpoint": "コンソールエンドポイント",
+    "portal_authorization_endpoint": "ポータル認証エンドポイント",
+    "client_secret": "シークレット",
+    "client_id": "クライアントID",
+    "application_id": "アプリケーションID",
+}
+----
+|===
+* `**console_endpoint**` に、コンソールエンドポイントを指定します。 +
+* `**portal_authorization_endpoint**` に、ポータル認証エンドポイントを指定します。 +
+ポータル認証エンドポイントは、 `**\https://login.microsoftonline.com/{テナントID}**`  の形式で指定します。 +
+* `**client_secret**` に、登録したアプリケーションのシークレットを指定します。 +
+* `**client_id**` に、登録したアプリケーションのクライアントIDを指定します。 +
+* `**application_id**` に、登録したアプリケーションのアプリケーションIDを指定します。 +
 +
 
 . 「**Slack**」による通知を行う場合は、[slack_settings] のコメントアウトを解除して「**Slack**」の通知用情報を設定します。

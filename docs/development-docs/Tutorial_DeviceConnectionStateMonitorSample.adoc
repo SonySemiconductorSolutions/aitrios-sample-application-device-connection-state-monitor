@@ -21,6 +21,9 @@
 |2023/06/29
 |Initial draft
 
+|2024/02/05
+|Console Developer Edition and Console Enterprise Edition support
+
 |===
 
 == Introduction
@@ -33,16 +36,20 @@ This sample regularly obtains connection state of Edge AI device from "**Console
 === Prepare Console connection information
 
 To use sample application, a connection information is required to access "**Console**" from application. +
-Information obtained is used in “How to use application”. The necessary connection information is given as below.
+Information obtained is used in “How to use application”. The necessary connection information is given as below. +
 
-* Refer to the client application list of "**Portal for AITRIOS**" or register the client application for the sample application if necessary to get the following information: 
-See the "Issuing a Client Secret for SDK" in https://developer.aitrios.sony-semicon.com/en/documents/portal-user-manual["**Portal User Manual**"] for more information.
+- When "**Console Developer Edition**" is used
+* Refer to the client application list in "**Portal for AITRIOS**" or register the client application for the sample application based on the requirement and obtain the following information. For details, refer to "Issuing a Client Secret for SDK" in the https://developer.aitrios.sony-semicon.com/en/documents/portal-user-manual["**Portal User Manual**"].
+
 ** Client ID
 ** Secret
 +
-* Get the following information from https://developer.aitrios.sony-semicon.com/en/file/download/rest-api-authentication[this material]:
+* Get the following information from https://developer.aitrios.sony-semicon.com/en/file/download/rest-api-authentication[this material].
 ** Console endpoint
 ** Portal authorization endpoint
+
+- When using "**Console Enterprise Edition**"
+* Please contact "**Console**" deployment representative (Service Administrator).
 
 === Prepare service for notification
 In sample application, notification processing is done using either of the following services. +
@@ -88,6 +95,9 @@ pip install -r requirements.txt
 . Change the file name of [src/config/access_settings.py.sample] to [src/config/access_settings.py] . +
 . Set connection information of "**Console**" to [console_access_settings]. Refer <<#_precondition,Precondition>> to understand how to obtain connection information.
 +
+
+- When "**Console Developer Edition**" is used
++
 |===
 |src/config/access_settings.py
 a|
@@ -101,6 +111,35 @@ console_access_settings = {
 }
 ----
 |===
++
+* Specify the Console Endpoint in the `**console_endpoint**`. +
+* Specify the Portal authentication endpoint in `**portal_authorization_endpoint**`. +
+* Specify the Secret of the registered application in `**client_secret**`. +
+* Specify the Client ID of the registered application in the `**client_id**`. +
++
+- When "**Console Enterprise Edition**" is used
++
+|===
+|src/config/access_settings.py
+a|
+[source,Python]
+----
+console_access_settings = {
+    "console_endpoint": "Console endpoint",
+    "portal_authorization_endpoint": "Portal authorization endpoint",
+    "client_secret": "Secret",
+    "client_id": "Client ID",
+    "application_id": "Application ID",
+}
+----
+|===
++
+* Specify the Console endpoint in the `**console_endpoint**`. +
+* Specify the Portal authentication endpoint in `**portal_authorization_endpoint**`. +
+The Portal authentication endpoint is to be specified in a `**\https://login.microsoftonline.com/{tenantID}**` format. +
+* Specify the Secret of the registered application in `**client_secret**`. +
+* Specify the Client ID of the registered application in the `**client_id**`. +
+* Specify the Application ID of the registered application in `**application_id**`. +
 +
 
 . When notifying through "**Slack**", cancel the comment out of [slack_settings] and set notification information of "**Slack**".

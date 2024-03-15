@@ -1,5 +1,5 @@
 """
-Copyright 2023 Sony Semiconductor Solutions Corp. All rights reserved.
+Copyright 2023, 2024 Sony Semiconductor Solutions Corp. All rights reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -39,7 +39,8 @@ def get_console_client():
         settings.console_access_settings["console_endpoint"],
         settings.console_access_settings["portal_authorization_endpoint"],
         settings.console_access_settings["client_id"],
-        settings.console_access_settings["client_secret"]
+        settings.console_access_settings["client_secret"],
+        settings.console_access_settings.get("application_id")
     )
     client_obj = Client(config_obj)
 
