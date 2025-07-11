@@ -39,12 +39,12 @@ To use sample application, a connection information is required to access "**Con
 Information obtained is used in “How to use application”. The necessary connection information is given as below. +
 
 - When "**Console Developer Edition**" is used
-* Refer to the client application list in "**Portal for AITRIOS**" or register the client application for the sample application based on the requirement and obtain the following information. For details, refer to "Issuing a Client Secret for SDK" in the https://developer.aitrios.sony-semicon.com/en/documents/portal-user-manual["**Portal User Manual**"].
+* Refer to the client application list in "**Portal for AITRIOS**" or register the client application for the sample application based on the requirement and obtain the following information. For details, refer to "Issuing a Client Secret for SDK" in the https://developer.aitrios.sony-semicon.com/en/edge-ai-sensing/documents/portal-user-manual/["**Portal User Manual**"].
 
 ** Client ID
 ** Secret
 +
-* Get the following information from https://developer.aitrios.sony-semicon.com/en/file/download/rest-api-authentication[this material].
+* Get the following information from https://developer.aitrios.sony-semicon.com/en/file/download/edge-ai-sensing-portal-console-end-point-info/["**Endpoint Information of Portal and Console**"].
 ** Console endpoint
 ** Portal authorization endpoint
 
@@ -117,6 +117,13 @@ console_access_settings = {
 * Specify the Secret of the registered application in `**client_secret**`. +
 * Specify the Client ID of the registered application in the `**client_id**`. +
 +
+
+IMPORTANT: See the "Issuing a Client Secret for SDK" in https://developer.aitrios.sony-semicon.com/en/edge-ai-sensing/documents/portal-user-manual/["**Portal User Manual**"] for how to get Client ID and Secret. + 
+See the link:++https://developer.aitrios.sony-semicon.com/en/file/download/edge-ai-sensing-portal-console-end-point-info/++["**Endpoint Information of Portal and Console**"] for how to get Console endpoint and Portal authorization endpoint. + 
+These will give you access to the "**Console**". + 
+Do not publish or share with others and handle with care.
++
+
 - When "**Console Enterprise Edition**" is used
 +
 |===
@@ -142,6 +149,10 @@ The Portal authentication endpoint is to be specified in a `**\https://login.mic
 * Specify the Application ID of the registered application in `**application_id**`. +
 +
 
+IMPORTANT: For details on how to fetch the Console endpoint, Client ID, Secret and Tenant ID and Application ID, please contact "**Console**" deployment representative (Service Administrator). +
+Do not disclose it to the public or share it with others, handle it with care. +
++
+
 . When notifying through "**Slack**", cancel the comment out of [slack_settings] and set notification information of "**Slack**".
 +
 |===
@@ -155,6 +166,10 @@ slack_settings = {
 }
 ----
 |===
++
+
+IMPORTANT: These are the access information to "**Slack**". +
+Do not disclose it to the public or share it with others, handle it with care. +
 
 . When notifying through "**SendGrid**", cancel the comment out of [sendgrid_settings] and set notification information of "**SendGrid**".
 +
@@ -170,6 +185,10 @@ sendgrid_settings = {
 }
 ----
 |===
++
+
+IMPORTANT: These are the access information to "**SendGrid**". +
+Do not disclose it to the public or share it with others, handle it with care. +
 
 === Start Application
 Execute application through the following command. +
