@@ -66,9 +66,10 @@ def send_notification(devices_connected, devices_disconnected):
     def _create_devicelist_str(device_info_list):
         devices = []
         for device_info in device_info_list:
-            devices.append("- %s  %s (lastActivityTime: %s)" % (
+            devices.append("- %s  %s %s (lastActivityTime: %s)" % (
                 device_info.get("device_id", "-"),
                 device_info.get("property", {}).get("device_name", "-"),
+                device_info.get("comment", "-"),
                 device_info.get("lastActivityTime", "-")))
 
         return "\n".join(sorted(devices))

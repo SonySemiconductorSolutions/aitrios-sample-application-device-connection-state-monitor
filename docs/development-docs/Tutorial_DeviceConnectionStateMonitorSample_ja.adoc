@@ -38,11 +38,11 @@
 
 - 「**Console Developer Edition**」を使用している場合
 * 「**Portal for AITRIOS**」のクライアントアプリケーション一覧から参照または、必要に応じてサンプルアプリケーション向けのクライアントアプリケーション登録を行い、下記情報の取得を行ってください。
-詳細は、 https://developer.aitrios.sony-semicon.com/documents/portal-user-manual[「**Portalユーザーマニュアル**」] の「SDK用のClient Secretを発行する」をお読みください。
+詳細は、 https://developer.aitrios.sony-semicon.com/edge-ai-sensing/documents/portal-user-manual/[「**Portalユーザーマニュアル**」] の「SDK用のClient Secretを発行する」をお読みください。
 ** クライアントID
 ** シークレット
 +
-* https://developer.aitrios.sony-semicon.com/file/download/rest-api-authentication[こちらのドキュメント] から下記の情報を取得してください。
+* https://developer.aitrios.sony-semicon.com/file/download/edge-ai-sensing-portal-console-end-point-info/[**PortalおよびConsoleのエンドポイント情報**] から下記の情報を取得してください。
 ** コンソールエンドポイント
 ** ポータル認証エンドポイント
 
@@ -113,6 +113,13 @@ console_access_settings = {
 * `**client_secret**` に、登録したアプリケーションの シークレット を指定します。 +
 * `**client_id**` に、登録したアプリケーションの クライアントID を指定します。 +
 +
+
+IMPORTANT: クライアントIDとシークレットの取得方法詳細は、 https://developer.aitrios.sony-semicon.com/edge-ai-sensing/documents/portal-user-manual/[「**Portalユーザーマニュアル**」] の「SDK用のClient Secretを発行する」をお読みください。 + 
+コンソールエンドポイントとポータル認証エンドポイントの取得方法詳細は、link:++https://developer.aitrios.sony-semicon.com/file/download/edge-ai-sensing-portal-console-end-point-info/++[**PortalおよびConsoleのエンドポイント情報**] をお読みください。 +
+これらは「**Console**」へのアクセス情報となります。 + 
+公開したり、他者との共有をせず、取り扱いには十分注意してください。
++
+
 - 「**Console Enterprise Edition**」を使用している場合
 +
 |===
@@ -137,6 +144,11 @@ console_access_settings = {
 * `**application_id**` に、登録したアプリケーションのアプリケーションIDを指定します。 +
 +
 
+IMPORTANT: コンソールエンドポイントとクライアントIDとシークレットとテナントIDとアプリケーションIDの取得方法詳細は、「**Console**」の導入担当者(Service Administrator)に問い合わせください。 +
+これらは「**Console**」へのアクセス情報となります。 +
+公開したり、他者との共有をせず、取り扱いには十分注意してください。 +
++
+
 . 「**Slack**」による通知を行う場合は、[slack_settings] のコメントアウトを解除して「**Slack**」の通知用情報を設定します。
 +
 |===
@@ -150,6 +162,10 @@ slack_settings = {
 }
 ----
 |===
++
+
+IMPORTANT: これらは「**Slack**」へのアクセス情報となります。 +
+公開したり、他者との共有をせず、取り扱いには十分注意してください。 +
 
 . 「**SendGrid**」による通知を行う場合は、[sendgrid_settings] のコメントアウトを解除して「**SendGrid**」の通知用情報を設定します。
 +
@@ -165,6 +181,10 @@ sendgrid_settings = {
 }
 ----
 |===
++
+
+IMPORTANT: これらは「**SendGrid**」へのアクセス情報となります。 +
+公開したり、他者との共有をせず、取り扱いには十分注意してください。 +
 
 === アプリケーションを開始する
 下記のコマンドによりアプリケーションを実行します。 +

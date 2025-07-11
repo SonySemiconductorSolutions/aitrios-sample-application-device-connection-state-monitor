@@ -20,7 +20,7 @@ This repository provides sample code for monitoring device connection state and 
 None
 
 ## Getting Started
-See the ["**SDK Getting Started**"](https://developer.aitrios.sony-semicon.com/en/development-guides/get-started).
+See the ["**SDK Getting Started**"](https://developer.aitrios.sony-semicon.com/en/edge-ai-sensing/documents/sdk-getting-started/).
 
 ## Tutorials
 You can use tutorial to experience how to use this sample application.
@@ -30,13 +30,13 @@ See the ["**Device Connection State Monitor Sample Tutorial**"](./docs/developme
 - ["**Device Connection State Monitor Sample Tutorial**"](./docs/development-docs/Tutorial_DeviceConnectionStateMonitorSample.adoc)
 
 ## Get support
-- [Contact us](https://developer.aitrios.sony-semicon.com/en/contact-us-en)
+- [Contact us](https://support.aitrios.sony-semicon.com/hc/en-us/requests/new)
 
 ## See also
 - ["**Developer Site**"](https://developer.aitrios.sony-semicon.com/en/edge-ai-sensing/)
 
 ## Trademark
-- ["**Read This First**"](https://developer.aitrios.sony-semicon.com/en/documents/read-this-first)
+- ["**Read This First**"](https://developer.aitrios.sony-semicon.com/en/edge-ai-sensing/documents/read-this-first/)
 
 ## Versioning
 
